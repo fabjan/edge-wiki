@@ -26,15 +26,18 @@ https://developers.cloudflare.com/workers/wrangler/cli-wrangler/commands/#kv
 
 1. Edit [wrangler.toml](./wrangler.toml) to insert your KV space ids
 
+1. Set basic auth username and password through the secrets
+`BASICAUTH_USERNAME` and `BASICAUTH_PASSWORD`:
+https://developers.cloudflare.com/workers/wrangler/commands/#secret
+
 ## Running
 
 `npm start`
 
 ## Publishing
 
-`npm publish` will make your worker public.
-
-**Be wary, there is no authentication (yet, see TODO below)**
+`npm publish` will make your worker public, remember to set the basic auth
+secrets.
 
 ## License
 
@@ -48,5 +51,5 @@ should soon be fixed in `wrangler` I assume.
 
 ## TODO
 
-- [ ] basic auth
+- [x] basic auth
 - [ ] oidc auth

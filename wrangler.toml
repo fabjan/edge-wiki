@@ -9,3 +9,6 @@ kv_namespaces = [
   { binding = "PAGE_INDEX", id = "REPLACEME3", preview_id = "REPLACEME4" }
 ]
 
+# [secrets]
+# BASICAUTH_USERNAME
+# BASICAUTH_PASSWORD

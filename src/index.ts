@@ -1,9 +1,21 @@
 import { Hono } from 'hono';
 import { bodyParse } from 'hono/body-parse';
+import { basicAuth } from 'hono/basic-auth'
 
 import { link, listGroup, render } from './html';
 import wikiPage from './wikiPage';
 import wikiSearch, { searchWords } from './wikiSearch';
+
+// see wrangler.toml
+declare const BASICAUTH_USERNAME: string;
+declare const BASICAUTH_PASSWORD: string;
+
+function authMiddleware() {
+  return basicAuth({
+    username: BASICAUTH_USERNAME,
+    password: BASICAUTH_PASSWORD,
+  });
+}
 
 const app = new Hono();
 
@@ -38,8 +50,7 @@ app.get('/:pageName', async (ctx) => {
   return ctx.html(await html);
 });
 
-// TODO auth middleware
-app.post('/:pageName', bodyParse(), async (ctx) => {
+app.post('/:pageName', authMiddleware(), bodyParse(), async (ctx) => {
   const pageName = ctx.req.param('pageName');
   if (20 < pageName.length) {
     return ctx.text(`page name too long (${pageName.length}), 20 characters is the limit`, 414);
