@@ -48,5 +48,5 @@ should soon be fixed in `wrangler` I assume.
 
 ## TODO
 
-[ ] basic auth
-[ ] oidc auth
+- [ ] basic auth
+- [ ] oidc auth
