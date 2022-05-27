@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-        "start": "wrangler dev",
-        "publish": "wrangler publish"
+        "start-worker": "wrangler dev",
+        "publish-worker": "wrangler publish"
     },
     "dependencies": {
         "@tsndr/cloudflare-worker-router": "^1.3.1",
