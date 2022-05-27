@@ -2,8 +2,12 @@
 declare const PAGE_INDEX: KVNamespace;
 
 const stopWords = /^(I|a|about|an|are|as|at|be|by|com|for|from|how|in|is|it|of|on|or|that|the|the|this|to|was|what|when|where|who|will|with)$/i;
-export function searchWords(s: string): string[] {
-    return s.split(/\W/).filter(s => !s.match(/\W/) && !s.match(stopWords) && (0 < s.length));
+
+export function searchWords(text: string): string[] {
+    return text
+        .split(/\W/)
+        .filter(w => (0 < w.length) && !w.match(/\W/) && !w.match(stopWords))
+        .map(w => w.toLowerCase());
 }
 
 async function index(pageName: string, pageContent: string): Promise<string[]> {
