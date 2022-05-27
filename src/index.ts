@@ -48,7 +48,7 @@ app.get('/_help', async (ctx) => {
 app.get('/_index', async (ctx) => {
   const pageNames = await wikiPage.list();
   const htmlList = listGroup(pageNames.map((name) => link(name)));
-  return ctx.html(render('Search Results', `<h2 class="text-primary">Wiki Index</h2>${htmlList}`));
+  return ctx.html(render('Wiki Index', `<h2 class="text-primary">Wiki Index</h2>${htmlList}`));
 })
 
 app.get('/_search', async (ctx) => {
@@ -58,7 +58,7 @@ app.get('/_search', async (ctx) => {
   if (0 < hits.length) {
     html = listGroup(hits.map((pageName) => link(pageName)));
   }
-  return ctx.html(render('Search Results', `<h2>Search Results (${query})</h2>${html}`));
+  return ctx.html(render('Search Results', `<h2 class="text-primary">Search Results (${query})</h2>${html}`));
 })
 
 app.get('/:pageName', async (ctx) => {
