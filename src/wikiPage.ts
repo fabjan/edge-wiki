@@ -2,6 +2,7 @@ import showdown from 'showdown';
 
 import { render } from './html';
 
+// see wrangler.toml
 declare const PAGES: KVNamespace;
 
 async function save(name: string, content: string): Promise<string> {
@@ -38,7 +39,7 @@ with extra syntax for links internal to this page (as on Wikipedia, a word in do
  
 Create new pages by visiting them, perhaps by creating a link to them first.
 `);
-    return (render('Help', html));
+    return (render('Help', '<h2 class="text-primary">Wiki Help</h2>' + html));
 }
 
 export default { save, show, edit, list, get, showHelp };

@@ -30,7 +30,7 @@ app.get('/_help', async (ctx) => {
 app.get('/_index', async (ctx) => {
   const pageNames = await wikiPage.list();
   const htmlList = listGroup(pageNames.map((name) => link(name)));
-  return ctx.html(render('Search Results', `<h2>Wiki Index</h2>${htmlList}`));
+  return ctx.html(render('Search Results', `<h2 class="text-primary">Wiki Index</h2>${htmlList}`));
 })
 
 app.get('/_search', async (ctx) => {
