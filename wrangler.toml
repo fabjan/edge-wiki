@@ -1,0 +1,11 @@
+name = "edge-wiki"
+main = "src/index.ts"
+compatibility_date = "2022-05-25"
+
+# id (for production) is a required field, but you can set it to the same as
+# preview_id until you need to separate them
+kv_namespaces = [
+  { binding = "PAGES", id = "REPLACEME1", preview_id = "REPLACEME2" },
+  { binding = "PAGE_INDEX", id = "REPLACEME3", preview_id = "REPLACEME4" }
+]
+
