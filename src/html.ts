@@ -27,7 +27,7 @@ for (i = 0; i < links.length; i++) {
         continue;
     }
     link.onclick = function() {
-        return confirm('Are you sure you want to leave this site (going to ' + link.href + ')?');
+        return confirm('Are you sure you want to leave this site?\\n(going to ' + link.href + ')');
     };
 }
 </script>
@@ -53,9 +53,10 @@ function navbar(pagename?: string) {
         <li class="nav-item">
           <a class="nav-link" href="/_index">Index</a>
         </li>
+        ${pagename ? `
         <li class="nav-item">
-          <a class="nav-link ${pagename ? '' : 'disabled'}" href="/${pagename}?edit">edit this page</a>
-        </li>
+          <a class="nav-link" href="/${pagename}?edit">[edit '${pagename}']</a>
+        </li>` : ''}
       </ul>
       <form role="search" action="/_search">
         <input name="q" class="form-control" type="search" placeholder="Search" aria-label="Search">
