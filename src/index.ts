@@ -60,7 +60,7 @@ app.post('/:pageName', authMiddleware(), bodyParse(), async (ctx) => {
     return ctx.text(`page content too long (${content.length}), 640 bytes ought to be enough for anyone`, 413)
   }
   const html = await wikiPage.save(pageName, content);
-  wikiSearch.index(pageName, content);
+  await wikiSearch.index(pageName, content);
   return ctx.html(html);
 });
 

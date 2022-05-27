@@ -8,15 +8,15 @@ export function searchWords(s: string): string[] {
 
 async function index(pageName: string, pageContent: string): Promise<string[]> {
     const pageWords = Array.from(new Set(searchWords(pageContent)));
-    for (const word of pageWords) {
-        find([word]).then((pages) => {
+    await Promise.all(pageWords.map((word) => {
+        return find([word]).then((pages) => {
             if (pages.includes(pageName)) {
                 return;
             }
             pages.push(pageName);
-            PAGE_INDEX.put(word, JSON.stringify(pages));
+            return PAGE_INDEX.put(word, JSON.stringify(pages))
         })
-    }
+    }))
     return pageWords;
 }
 
