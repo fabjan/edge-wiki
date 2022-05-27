@@ -82,7 +82,7 @@ async function onScheduleEvent(event: ScheduledEvent) {
 async function reIndex(): Promise<void> {
 
   const pageNames = await wikiPage.list();
-  console.log(`re-indexing wiki pages (${pageNames.join(', ')})`); 
+  console.log(`re-indexing wiki pages (${pageNames.join(', ')})`);
 
   // collect current contents
   const pages: Record<string, string> = {};
