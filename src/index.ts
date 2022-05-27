@@ -17,6 +17,24 @@ function authMiddleware() {
   });
 }
 
+function getUser(req: Request): string | null {
+
+  const authHeader = req.headers.get('Authorization');
+  const basicPrefix = 'Basic ';
+
+  if (!authHeader?.startsWith(basicPrefix)) {
+    return null;
+  }
+
+  try {
+    const userPass = authHeader.substring(basicPrefix.length);
+    const user = atob(userPass).split(':')[0];
+    return user || null;
+  } catch {
+    return null;
+  }
+}
+
 const app = new Hono();
 
 app.get('/', (ctx) => {
@@ -52,6 +70,7 @@ app.get('/:pageName', async (ctx) => {
 
 app.post('/:pageName', authMiddleware(), bodyParse(), async (ctx) => {
   const pageName = ctx.req.param('pageName');
+  const user = getUser(ctx.req);
   if (20 < pageName.length) {
     return ctx.text(`page name too long (${pageName.length}), 20 characters is the limit`, 414);
   }
@@ -60,6 +79,7 @@ app.post('/:pageName', authMiddleware(), bodyParse(), async (ctx) => {
     return ctx.text(`page content too long (${content.length}), 640 bytes ought to be enough for anyone`, 413)
   }
   const html = await wikiPage.save(pageName, content);
+  console.info(`user '${user}' updated /${pageName}`);
   await wikiSearch.index(pageName, content);
   return ctx.html(html);
 });
