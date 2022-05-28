@@ -32,12 +32,12 @@ https://developers.cloudflare.com/workers/wrangler/commands/#secret
 
 ## Running
 
-`npm start`
+`npm run start-worker`
 
 ## Publishing
 
-`npm publish` will make your worker public, remember to set the basic auth
-secrets.
+`npm run publish-worker` will make your worker public, remember to set the
+basic auth secrets.
 
 ## License
 
@@ -45,9 +45,10 @@ MIT, see [LICENSE](./LICENSE).
 
 ## Notes
 
-`wrangler` has a transitive dependency on a vulnerable version of `dicer`, it's
-been bumped in `miniflare` https://github.com/cloudflare/miniflare/pull/269 so
-should soon be fixed in `wrangler` I assume.
+(as of 2022-05-28) `wrangler` has a transitive dependency on a vulnerable
+version of `dicer`, it's been bumped in `miniflare`
+https://github.com/cloudflare/miniflare/pull/269 so should soon be fixed in
+`wrangler` I assume.
 
 ## TODO
 
